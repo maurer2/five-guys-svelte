@@ -4,6 +4,8 @@ import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 
+import sass from 'node-sass';
+
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
@@ -22,6 +24,27 @@ export default {
 			// a separate file — better for performance
 			css: css => {
 				css.write('public/bundle.css');
+			},
+			preprocess: {
+				style: ({ content, attributes }) => {
+					if (attributes.type !== 'text/scss') return;
+
+					return new Promise((fulfil, reject) => {
+						sass.render({
+							data: content,
+							includePaths: ['src'],
+							sourceMap: true,
+							outFile: 'x'
+						}, (err, result) => {
+							if (err) return reject(err);
+
+							fulfil({
+								code: result.css.toString(),
+								map: result.map.toString()
+							});
+						});
+					});
+				}
 			}
 		}),
 
