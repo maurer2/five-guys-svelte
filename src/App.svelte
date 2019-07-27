@@ -2,6 +2,7 @@
 	// imports
 	import Hero from './Hero.svelte';
 	import Header from './Header.svelte';
+	import Nav from './Nav.svelte';
 
 	// props
 	// export let name;
@@ -31,42 +32,41 @@
 		}
 	];
 
+	// vars
+	let activePlayerId = 0;
+
 	function getPlayerNameById(id) {
 		const playerFound = players.find((player) => player.id === id);
 
 		return (playerFound === undefined) ? '' : playerFound.fullName;
 	}
 
-	// vars
-	let activePlayerId = 0;
+	function updateSelectedPlayer({ detail }) {
+		activePlayerId = detail;
+	};
 
 </script>
 
 <style type='text/scss'>
-  @import 'variables';
+	@import './styles/variables';
+	@import './styles/global';
 
-  .wrapper {
-		padding: $spacing / 2;
+	.page {
+		margin: auto;
+		width: 100%;
+		border: 1px solid $gray;
+		max-width: 380px;
 	}
 
-	h1 {
-		color: black;
-	}
 </style>
 
 <!-- markup -->
-<div class="wrapper">
-	<article class="page">
-		<div class="nav">
-			<select bind:value={ activePlayerId }>
-				<option value={ 0 } selected disabled>Select player...</option>
-				{#each players as player (player.id)}
-					<option value={player.id}>{player.fullName}</option>
-				{/each}
-			</select>
-		</div>
-		<h1>Selected player: { getPlayerNameById(activePlayerId) }</h1>
-		<Hero catName={dummyData[0]} />
-		<Header catName={dummyData[1]} />
-	</article>
-</div>
+<article class="page">
+	<Nav players={ players } on:playerchange="{ updateSelectedPlayer }" />
+	<h1>
+		<div>Selected player id: { activePlayerId }</div>
+		<div>Selected player name: { getPlayerNameById(activePlayerId) }</div>
+	</h1>
+	<Hero catName={dummyData[0]} />
+	<Header catName={dummyData[1]} />
+</article>
