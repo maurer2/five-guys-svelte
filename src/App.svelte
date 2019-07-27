@@ -5,32 +5,10 @@
 	import Nav from './Nav.svelte';
 
 	// props
-	// export let name;
+	export let players;
 
 	// data
 	const dummyData = ['Mittens', 'Murle'];
-	const players = [
-		{
-			id: 4916,
-			fullName: 'Toby Alderweireld',
-		},
-		{
-			id: 4148,
-			fullName: 'Yaya Touré',
-		},
-		{
-			id: 2064,
-			fullName: 'Wayne Rooney',
-		},
-		{
-			id: 4246,
-			fullName: 'Per Mertesacker',
-		},
-		{
-			id: 8983,
-			fullName: 'Riyad Mahrez',
-		}
-	];
 
 	// vars
 	let activePlayerId = 0;
