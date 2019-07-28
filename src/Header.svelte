@@ -2,7 +2,7 @@
   export let player;
 
   // not reactive
-  // let isDefaultStyle = (player === null);
+  // let isDefault = (player === null);
 
   // reactive
   $: isDefault = (player === null);
@@ -18,6 +18,6 @@
     </div>
   </div>
   <div class="crest-column">
-    <!-- <img class="crest crest-default" src="./images/teams/default.png" alt="" /> -->
+    <img class="crest crest-default" src="/images/teams/default.png" alt="" />
   </div>
 </header>

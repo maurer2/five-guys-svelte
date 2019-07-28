@@ -7,9 +7,6 @@
   // props
   export let players;
 
-  // data
-  const dummyData = ['Mittens', 'Murle'];
-
   // vars
   let activePlayerId = 0;
 
@@ -41,6 +38,6 @@
 <!-- markup -->
 <article class="page">
   <Nav players={ players } activePlayerId={ activePlayerId } on:playerchange="{ updateSelectedPlayer }" />
-  <Hero catName={dummyData[0]} />
+  <Hero player={ getPlayerById(activePlayerId) } />
   <Header player={ getPlayerById(activePlayerId) } />
 </article>

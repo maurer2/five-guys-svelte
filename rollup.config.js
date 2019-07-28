@@ -5,53 +5,54 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import sass from 'node-sass';
 import json from 'rollup-plugin-json';
+import copy from 'rollup-plugin-copy';
 
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-	input: 'src/main.js',
-	output: {
-		sourcemap: true,
-		format: 'iife',
-		name: 'app',
-		file: 'public/bundle.js'
-	},
-	plugins: [
-		svelte({
-			// enable run-time checks when not in production
-			dev: !production,
-			// we'll extract any component CSS out into
-			// a separate file — better for performance
-			css: css => {
-				css.write('public/bundle.css');
-			},
-			preprocess: {
-				style: ({ content, attributes }) => {
-					if (attributes.type !== 'text/scss') return;
+  input: 'src/main.js',
+  output: {
+    sourcemap: true,
+    format: 'iife',
+    name: 'app',
+    file: 'public/bundle.js',
+  },
+  plugins: [
+    svelte({
+      // enable run-time checks when not in production
+      dev: !production,
+      // we'll extract any component CSS out into
+      // a separate file — better for performance
+      css: (css) => {
+        css.write('public/bundle.css');
+      },
+      preprocess: {
+        style: ({ content, attributes }) => {
+          if (attributes.type !== 'text/scss') return;
 
-					return new Promise((fulfil, reject) => {
-						sass.render({
-							data: content,
-							includePaths: ['src'],
-							sourceMap: true,
-							outFile: 'x'
-						}, (err, result) => {
-							if (err) return reject(err);
+          return new Promise((fulfil, reject) => {
+            sass.render({
+              data: content,
+              includePaths: ['src'],
+              sourceMap: true,
+              outFile: 'x',
+            }, (err, result) => {
+              if (err) return reject(err);
 
-							fulfil({
-								code: result.css.toString(),
-								map: result.map.toString()
-							});
-						});
-					});
-				}
-			}
-		}),
-		json({
+              fulfil({
+                code: result.css.toString(),
+                map: result.map.toString(),
+              });
+            });
+          });
+        },
+      },
+    }),
+    json({
       // All JSON files will be parsed by default,
       // but you can also specifically include/exclude files
       // include: 'node_modules/**',
-      exclude: [ 'node_modules/**'],
+      exclude: ['node_modules/**'],
 
       // for tree-shaking, properties will be declared as
       // variables, using either `var` or `const`
@@ -65,29 +66,35 @@ export default {
       compact: true, // Default: false
 
       // generate a named export for every property of the JSON object
-      namedExports: true // Default: true
+      namedExports: true, // Default: true
+    }),
+    copy({
+      targets: [
+        { src: './src/index.html', dest: './public' },
+        { src: './src/images', dest: './public' },
+      ],
     }),
 
-		// If you have external dependencies installed from
-		// npm, you'll most likely need these plugins. In
-		// some cases you'll need additional configuration —
-		// consult the documentation for details:
-		// https://github.com/rollup/rollup-plugin-commonjs
-		resolve({
-			browser: true,
-			dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
-		}),
-		commonjs(),
+    // If you have external dependencies installed from
+    // npm, you'll most likely need these plugins. In
+    // some cases you'll need additional configuration —
+    // consult the documentation for details:
+    // https://github.com/rollup/rollup-plugin-commonjs
+    resolve({
+      browser: true,
+      dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/'),
+    }),
+    commonjs(),
 
-		// Watch the `public` directory and refresh the
-		// browser on changes when not in production
-		!production && livereload('public'),
+    // Watch the `public` directory and refresh the
+    // browser on changes when not in production
+    !production && livereload('public'),
 
-		// If we're building for production (npm run build
-		// instead of npm run dev), minify
-		production && terser()
-	],
-	watch: {
-		clearScreen: false
-	}
+    // If we're building for production (npm run build
+    // instead of npm run dev), minify
+    production && terser(),
+  ],
+  watch: {
+    clearScreen: false,
+  },
 };

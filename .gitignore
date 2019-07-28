@@ -83,4 +83,4 @@ yarn-error.log*
 
 #svelte
 public/*
-!public/index.html
+#!public/index.html
