@@ -6,10 +6,10 @@ import getPlayers from './data/transform';
 const players = getPlayers(playersJSON);
 
 const app = new App({
-	target: document.body,
-	props: {
-		players,
-	}
+  target: document.body,
+  props: {
+    players,
+  }
 });
 
 export default app;

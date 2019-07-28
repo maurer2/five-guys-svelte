@@ -62,10 +62,10 @@ function getPlayer(playerData) {
   };
 
   return playerMapped;
-};
+}
 
 export default function getPlayers(playersData) {
-  const players = playersData.map((playerData) => getPlayer(playerData));
+  const players = playersData.map(playerData => getPlayer(playerData));
 
   return players;
 }
