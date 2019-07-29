@@ -23,9 +23,7 @@
 </script>
 
 <style type='text/scss'>
-  // @import '~normalize.css';
   @import './styles/normalize.scss';
-
   @import './styles/variables';
   @import './styles/global';
 

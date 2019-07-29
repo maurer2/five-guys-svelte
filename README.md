@@ -1,4 +1,4 @@
-# Five-buys-svelte
+# Five-guys-svelte
 
 Testing out svelte
 
