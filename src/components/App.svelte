@@ -24,10 +24,13 @@
 </script>
 
 <style type='text/scss'>
+  // @import '~normalize.css';
+  @import './styles/normalize.scss';
+
   @import './styles/variables';
   @import './styles/global';
 
-  .page {
+  .app {
     margin: auto;
     width: 100%;
     border: 1px solid $gray;
@@ -37,7 +40,7 @@
 </style>
 
 <!-- markup -->
-<article class="page">
+<article class="app">
   <Nav players={ players } activePlayerId={ activePlayerId } on:playerchange="{ updateSelectedPlayer }" />
   <Hero player={ getPlayerById(activePlayerId) } />
   <Header player={ getPlayerById(activePlayerId) } />
