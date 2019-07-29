@@ -8,8 +8,35 @@
 <style type='text/scss'>
   @import './styles/variables';
 
-  .header {
+  .hero {
+    padding: 0 $spacing;
+    background-image: url(/images/other/background-pattern.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+
+    .default-image {
+      display: block;
+      width: 150px;
+      height: 190px;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      display: block;
+      width: 150px;
+      height: 190px;
+
+      @supports(object-position: -5px) {
+        object-position: -5px;
+      }
+    }
+  }
+
+  .masthead {
     display: flex;
+    padding: 0 $spacing;
+    background: $red;
+    color: white;
 
     .text-column,
     .crest-column {
@@ -34,7 +61,7 @@
     }
 
     .position {
-      margin-bottom: $spacing;
+      margin-bottom: 1rem;
       font-size: 1rem;
 
       &--is-hidden {
@@ -43,6 +70,7 @@
     }
 
     .crest {
+      display: block;
       padding: $spacing / 4;
       width: 83px;
       height: 83px;
@@ -63,19 +91,30 @@
 </style>
 
 <header class="header">
-  <div class="text-column">
-    <h1 class="title" class:title--is-hidden={ isDefault }>
-      { isDefault ? '-' : player.fullName }
-    </h1>
-    <div class="position" class:position--is-hidden={ isDefault }>
-      { isDefault ? '-' : player.position }
-    </div>
-  </div>
-  <div class="crest-column">
+  <div class="hero">
     {#if isDefault}
-      <img class="crest crest-default" src="/images/teams/default.png" alt="" />
+      <div class="default-image">
+        <img inline class="hero-image" src="/images/players/default.svg" alt="player photo" />
+      </div>
     {:else}
-      <img class="crest" src="/images/teams/{player.team.id}.svg" alt="" />
+      <img class="hero-image" src="/images/players/p{player.id}.png" alt="player photo" />
     {/if}
+  </div>
+  <div class="masthead">
+    <div class="text-column">
+      <h1 class="title" class:title--is-hidden={ isDefault }>
+        { isDefault ? '' : player.fullName }
+      </h1>
+      <div class="position" class:position--is-hidden={ isDefault }>
+        { isDefault ? '' : player.position }
+      </div>
+    </div>
+    <div class="crest-column">
+      {#if isDefault}
+        <img class="crest crest-default" src="/images/teams/default.png" alt="" />
+      {:else}
+        <img class="crest" src="/images/teams/{player.team.id}.svg" alt="" />
+      {/if}
+    </div>
   </div>
 </header>

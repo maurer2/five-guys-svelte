@@ -9,6 +9,7 @@
     passesPerMinute: 'Passes per minute',
   }
   const statisticsKeys = Object.keys(statisticsKeyMapping);
+  const itemsFormatToFixedPoint = ['goalsPerMatch', 'passesPerMinute'];
 
   // reactive
   $: playerStatistics = (player === null) ? {} : player.statistics;
@@ -18,8 +19,13 @@
   @import './styles/variables';
 
   .statistics {
-    margin-bottom: 2px;
-    // box-shadow: 0px 0px 5px 0px rgba($foreground, 0.5);
+    padding: 0 $spacing $spacing $spacing;
+    background: $red;
+    color: $background;
+
+    .wrapper{
+      box-shadow: 0px 0px 5px 0px rgba($foreground, 0.5);
+    }
 
     .entry {
       display: flex;
@@ -44,19 +50,21 @@
 
 </style>
 
-<div class="statistics">
-  {#each statisticsKeys as statisticsKey (statisticsKey)}
-    <dl class="entry">
-      <dt class="key">
-        {statisticsKeyMapping[statisticsKey]}
-      </dt>
-      <dd class="value">
-        {#if statisticsKey in playerStatistics }
-          {playerStatistics[statisticsKey]}
-        {:else}
-          -
-        {/if}
-      </dd>
-    </dl>
-  {/each}
-</div>
+<section class="statistics">
+  <div class="wrapper">
+    {#each statisticsKeys as statisticsKey (statisticsKey)}
+      <dl class="entry">
+        <dt class="key">
+          {statisticsKeyMapping[statisticsKey]}
+        </dt>
+        <dd class="value">
+          {#if statisticsKey in playerStatistics }
+            { (itemsFormatToFixedPoint.includes(statisticsKey)) ? playerStatistics[statisticsKey].toFixed(2) : playerStatistics[statisticsKey]}
+          {:else}
+            -
+          {/if}
+        </dd>
+      </dl>
+    {/each}
+  </div>
+</section>

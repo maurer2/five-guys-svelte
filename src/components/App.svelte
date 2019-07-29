@@ -1,7 +1,6 @@
 <script>
   // imports
   import Nav from './Nav.svelte';
-  import Hero from './Hero.svelte';
   import Header from './Header.svelte';
   import Statistics from './Statistics.svelte';
 
@@ -42,7 +41,6 @@
 <!-- markup -->
 <article class="app">
   <Nav players={ players } activePlayerId={ activePlayerId } on:playerchange="{ updateSelectedPlayer }" />
-  <Hero player={ getPlayerById(activePlayerId) } />
   <Header player={ getPlayerById(activePlayerId) } />
   <Statistics player={ getPlayerById(activePlayerId) } />
 </article>
