@@ -2,17 +2,16 @@
 
 Testing out svelte
 
-### Install
+## Install
 
-```
+```javascript
 yarn
 npm install
-
 ```
 
-### Start
+## Start
 
-```
+```javascript
 yarn autobuild
 yarn serve
 
@@ -20,6 +19,6 @@ npm run autobuild
 npm run serve
 ```
 
-### Svelte docs
+## Svelte docs
 
-https://svelte.dev/docs
+<https://svelte.dev/docs>
