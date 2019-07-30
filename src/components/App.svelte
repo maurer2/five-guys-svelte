@@ -8,7 +8,8 @@
   export let players;
 
   // vars
-  let activePlayerId = 0;
+  $: activePlayerId = 0;
+  $: player = getPlayerById(activePlayerId);
 
   function getPlayerById(id) {
     const playerFound = players.find((player) => player.id === id);
@@ -39,6 +40,6 @@
 <!-- markup -->
 <article class="app">
   <Nav players={ players } activePlayerId={ activePlayerId } on:playerchange="{ updateSelectedPlayer }" />
-  <Header player={ getPlayerById(activePlayerId) } />
-  <Statistics player={ getPlayerById(activePlayerId) } />
+  <Header player={ player } />
+  <Statistics player={ player } />
 </article>
