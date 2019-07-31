@@ -6,8 +6,6 @@
 </script>
 
 <style type='text/scss'>
-  @import './styles/variables';
-
   .hero {
     padding: 0 var(--spacing);
     background-image: url(/images/other/background-pattern.png);

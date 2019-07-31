@@ -16,8 +16,6 @@
 </script>
 
 <style type='text/scss'>
-  @import './styles/variables';
-
   .statistics {
     padding: 0 var(--spacing) var(--spacing) var(--spacing);
     background: var(--red);

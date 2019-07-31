@@ -11,8 +11,6 @@
 </script>
 
 <style type='text/scss'>
-  @import './styles/variables';
-
   .nav {
     margin: var(--spacing) var(--spacing) calc(var(--spacing) * 1.25) var(--spacing);
   }
