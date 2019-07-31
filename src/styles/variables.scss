@@ -1,6 +1,8 @@
-$background: #ffffff;
-$foreground: #000000;
-$gray: #EAEAEA;
-$red: #E90052;
+:root {
+  --spacing: 1rem;
 
-$spacing: 1rem;
+  --background: #FFFFFF;
+  --foreground: #000000;
+  --gray: #EAEAEA;
+  --red: #E90052;
+}

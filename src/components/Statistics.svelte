@@ -7,7 +7,7 @@
     goalsAssist: 'Assists',
     goalsPerMatch: 'Goals per match',
     passesPerMinute: 'Passes per minute',
-  }
+  };
   const statisticsKeys = Object.keys(statisticsKeyMapping);
   const itemsFormatToFixedPoint = ['goalsPerMatch', 'passesPerMinute'];
 
@@ -19,33 +19,33 @@
   @import './styles/variables';
 
   .statistics {
-    padding: 0 $spacing $spacing $spacing;
-    background: $red;
-    color: $background;
+    padding: 0 var(--spacing) var(--spacing) var(--spacing);
+    background: var(--red);
+    color: var(--background);
+  }
 
-    .wrapper{
-      box-shadow: 0px 0px 5px 0px rgba($foreground, 0.5);
-    }
+  .wrapper {
+    box-shadow: 0px 0px 5px 0px rgba(black, 0.5);
+  }
 
-    .entry {
-      display: flex;
-      margin: 0 0 2px 0;
-      padding: 0.75rem;
-      align-items: center;
-      background: $gray;
-      color: $foreground;
-    }
+  .entry {
+    display: flex;
+    margin: 0 0 2px 0;
+    padding: 0.75rem;
+    align-items: center;
+    background: var(--gray);
+    color: var(--foreground);
+  }
 
-    .key {
-      margin-right: auto;
-      font-size: 1rem;
-    }
+  .key {
+    margin-right: auto;
+    font-size: 1rem;
+  }
 
-    .value {
-      margin-left: $spacing / 2;
-      font-weight: bold;
-      font-size: 1.25rem;
-    }
+  .value {
+    margin-left: calc(var(--spacing) / 2);
+    font-weight: bold;
+    font-size: 1.25rem;
   }
 
 </style>
@@ -59,7 +59,10 @@
         </dt>
         <dd class="value">
           {#if statisticsKey in playerStatistics }
-            { (itemsFormatToFixedPoint.includes(statisticsKey)) ? playerStatistics[statisticsKey].toFixed(2) : playerStatistics[statisticsKey]}
+            { (itemsFormatToFixedPoint.includes(statisticsKey))
+              ? playerStatistics[statisticsKey].toFixed(2)
+              : playerStatistics[statisticsKey]
+            }
           {:else}
             -
           {/if}

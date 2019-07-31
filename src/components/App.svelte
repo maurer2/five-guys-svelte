@@ -7,19 +7,20 @@
   // props
   export let players;
 
-  // vars
-  $: activePlayerId = 0;
-  $: player = getPlayerById(activePlayerId);
-
+  // functions
   function getPlayerById(id) {
-    const playerFound = players.find((player) => player.id === id);
+    const playerFound = players.find(entry => entry.id === id);
 
     return (playerFound === undefined) ? null : playerFound;
   }
 
   function updateSelectedPlayer({ detail }) {
     activePlayerId = detail;
-  };
+  }
+
+  // vars
+  $: activePlayerId = 0;
+  $: player = getPlayerById(activePlayerId);
 
 </script>
 
@@ -31,7 +32,7 @@
   .app {
     margin: auto;
     width: 100%;
-    border: 1px solid $gray;
+    border: 1px solid var(--gray);
     max-width: 380px;
   }
 

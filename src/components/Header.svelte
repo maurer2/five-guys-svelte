@@ -9,83 +9,83 @@
   @import './styles/variables';
 
   .hero {
-    padding: 0 $spacing;
+    padding: 0 var(--spacing);
     background-image: url(/images/other/background-pattern.png);
     background-position: right center;
     background-repeat: no-repeat;
+  }
 
-    .default-image {
-      display: block;
-      width: 150px;
-      height: 190px;
-      overflow: hidden;
-    }
+  .default-image {
+    display: block;
+    width: 150px;
+    height: 190px;
+    overflow: hidden;
+  }
 
-    .hero-image {
-      display: block;
-      width: 150px;
-      height: 190px;
+  .hero-image {
+    display: block;
+    width: 150px;
+    height: 190px; 
 
-      @supports(object-position: -5px) {
-        object-position: -5px;
-      }
+    @supports(object-position: -5px) {
+      object-position: -5px;
     }
   }
 
   .masthead {
     display: flex;
-    padding: 0 $spacing;
-    background: $red;
-    color: white;
+    padding: 0 var(--spacing);
+    background: var(--red);
+    color: var(--background);
+  }
 
-    .text-column,
-    .crest-column {
-      flex-grow: 1;
-      flex-shrink: 0;
-      flex-basis: auto;
+  .text-column,
+  .crest-column {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
+  }
+
+  .crest-column {
+    margin-left: calc(var(--spacing) / 2);
+    flex-grow: 0;
+  }
+
+  .title {
+    margin-top: calc(var(--spacing) * 1.25);
+    margin-bottom: 0.75rem;
+    font-size: 1.35rem;
+  }
+
+  .title--is-hidden {
+    visibility: hidden;
+  }
+
+  .position {
+    margin-bottom: var(--spacing);
+    font-size: 1rem;
+  }
+
+  .position--is-hidden {
+    visibility: hidden;
+  }
+
+  .crest {
+    display: block;
+    padding: calc(var(--spacing) / 4);
+    width: 83px;
+    height: 83px;
+    transform: translateY(-45%);
+    background: var(--background);
+    border-radius: 50%;
+
+    @supports(object-fit: contain) {
+      object-fit: contain;
     }
+  }
 
-    .crest-column {
-      margin-left: $spacing / 2;
-      flex-grow: 0;
-    }
-
-    .title {
-      margin-top: $spacing * 1.25;
-      margin-bottom: 0.75rem;
-      font-size: 1.35rem;
-
-      &--is-hidden {
-        visibility: hidden;
-      }
-    }
-
-    .position {
-      margin-bottom: 1rem;
-      font-size: 1rem;
-
-      &--is-hidden {
-        visibility: hidden;
-      }
-    }
-
-    .crest {
-      display: block;
-      padding: $spacing / 4;
-      width: 83px;
-      height: 83px;
-      transform: translateY(-45%);
-      background: $background;
-      border-radius: 50%;
-
-      @supports(object-fit: contain) {
-        object-fit: contain;
-      }
-    }
-
-    .crest-default {
-      padding: $spacing;
-    }
+  .crest-default {
+    padding: var(--spacing);
   }
 
 </style>
@@ -103,10 +103,10 @@
   <div class="masthead">
     <div class="text-column">
       <h1 class="title" class:title--is-hidden={ isDefault }>
-        { isDefault ? '' : player.fullName }
+        { isDefault ? '-' : player.fullName }
       </h1>
       <div class="position" class:position--is-hidden={ isDefault }>
-        { isDefault ? '' : player.position }
+        { isDefault ? '-' : player.position }
       </div>
     </div>
     <div class="crest-column">
