@@ -2,6 +2,8 @@
 
 Testing out svelte
 
+![Screenshot animated](screenshot.jpg "Screenshot")
+
 ## Install
 
 ```javascript
@@ -12,10 +14,10 @@ npm install
 ## Start
 
 ```javascript
-yarn autobuild
+yarn build
 yarn serve
 
-npm run autobuild
+npm run build
 npm run serve
 ```
 
