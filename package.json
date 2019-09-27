@@ -1,17 +1,8 @@
 {
   "name": "five-guys-svelte",
-  "license": "MIT",
   "version": "1.0.0",
   "repository": "https://github.com/maurer2/five-guys-svelte",
-  "devDependencies": {
-    "npm-run-all": "^4.1.5",
-    "rollup": "^1.12.0",
-    "rollup-plugin-commonjs": "^10.0.0",
-    "rollup-plugin-livereload": "^1.0.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-svelte": "^5.0.3",
-    "rollup-plugin-terser": "^4.0.4"
-  },
+  "license": "MIT",
   "dependencies": {
     "autoprefixer": "^9.6.1",
     "eslint": "^6.2.1",
@@ -23,26 +14,28 @@
     "import": "^0.0.6",
     "node-sass": "^4.12.0",
     "normalize.css": "^8.0.1",
+    "npm-run-all": "^4.1.5",
     "postcss": "^7.0.18",
     "postcss-load-config": "^2.1.0",
+    "rollup": "^1.12.0",
+    "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-copy": "^3.1.0",
     "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-svelte": "^5.0.3",
+    "rollup-plugin-terser": "^4.0.4",
     "sass": "^1.22.7",
-    "svelte": "^3.0.0",
+    "sugarss": "^2.0.0",
+    "svelte": "^3.12.0",
     "svelte-preprocess": "^3.1.2"
   },
   "scripts": {
-    "build": "rollup -c",
     "autobuild": "rollup -c -w",
-    "serve": "http-server ./public/ -c-1",
+    "build": "rollup -c",
     "lint": "eslint 'src/**/*.svelte'",
-    "lint:fix": "eslint 'src/**/*.svelte src/**/*.js' --fix"
-  },
-  "browserslist": [
-    "defaults",
-    "not ie < 11",
-    "last 3 versions",
-    "last 3 iOS versions"
-  ]
+    "lint:fix": "eslint 'src/**/*.svelte src/**/*.js' --fix",
+    "serve": "http-server ./public/ -c-1"
+  }
 }

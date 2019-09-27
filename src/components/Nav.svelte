@@ -21,8 +21,6 @@
     border: 0;
     border-radius: 0;
     font-size: 1rem;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     background: var(--gray);
     color: var(--foreground);

@@ -5,7 +5,7 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import json from 'rollup-plugin-json';
 import copy from 'rollup-plugin-copy';
-import autoPreprocess, { scss } from 'svelte-preprocess';
+import autoPreprocess, { scss, postcss } from 'svelte-preprocess';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -27,10 +27,9 @@ export default {
         css.write('public/bundle.css');
       },
       preprocess: [
-        autoPreprocess({ /* svelte-preprocess options */ }),
-        scss({
-
-        }),
+        autoPreprocess({}), // template tags
+        scss({}),
+        postcss({}),
       ],
     }),
     json({
@@ -67,7 +66,7 @@ export default {
     // https://github.com/rollup/rollup-plugin-commonjs
     resolve({
       browser: true,
-      dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/'),
+      dedupe: (importee) => importee === 'svelte' || importee.startsWith('svelte/'),
     }),
     commonjs(),
 

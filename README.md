@@ -1,24 +1,23 @@
 # Five-guys-svelte
 
-Testing out svelte
+Testing out Svelte 3.
 
-![Screenshot animated](screenshot.jpg "Screenshot")
+![Screenshot](screenshot.png "Screenshot")
 
 ## Install
 
 ```javascript
 yarn
+or
 npm install
 ```
 
 ## Start
 
 ```javascript
-yarn build
-yarn serve
-
-npm run build
-npm run serve
+yarn build && yarn serve
+or
+npm run build && npm run serve
 ```
 
 ## Svelte docs

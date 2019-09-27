@@ -9,7 +9,7 @@
 
   // functions
   function getPlayerById(id) {
-    const playerFound = players.find(entry => entry.id === id);
+    const playerFound = players.find((entry) => entry.id === id);
 
     return (playerFound === undefined) ? null : playerFound;
   }
