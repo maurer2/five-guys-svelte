@@ -24,10 +24,10 @@
 
 </script>
 
-<style type='text/scss'>
-  @import './styles/normalize.scss';
-  @import './styles/variables';
-  @import './styles/global';
+<style lang="scss">
+  @import '../styles/normalize.scss';
+  @import '../styles/variables';
+  @import '../styles/global';
 
   .app {
     margin: auto;
@@ -38,9 +38,14 @@
 
 </style>
 
-<!-- markup -->
-<article class="app">
-  <Nav players={ players } activePlayerId={ activePlayerId } on:playerchange="{ updateSelectedPlayer }" />
-  <Header player={ player } />
-  <Statistics player={ player } />
-</article>
+<template lang="html">
+  <article class="app">
+    <Nav
+      players={ players }
+      activePlayerId={ activePlayerId }
+      on:playerchange="{ updateSelectedPlayer }"
+    />
+    <Header player={ player } />
+    <Statistics player={ player } />
+  </article>
+</template>

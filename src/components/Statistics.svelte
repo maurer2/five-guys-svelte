@@ -15,7 +15,7 @@
   $: playerStatistics = (player === null) ? {} : player.statistics;
 </script>
 
-<style type='text/scss'>
+<style lang='scss'>
   .statistics {
     padding: 0 var(--spacing) var(--spacing) var(--spacing);
     background: var(--red);
@@ -48,24 +48,26 @@
 
 </style>
 
-<section class="statistics">
-  <div class="wrapper">
-    {#each statisticsKeys as statisticsKey (statisticsKey)}
-      <dl class="entry">
-        <dt class="key">
-          {statisticsKeyMapping[statisticsKey]}
-        </dt>
-        <dd class="value">
-          {#if statisticsKey in playerStatistics }
-            { (itemsFormatToFixedPoint.includes(statisticsKey))
-              ? playerStatistics[statisticsKey].toFixed(2)
-              : playerStatistics[statisticsKey]
-            }
-          {:else}
-            -
-          {/if}
-        </dd>
-      </dl>
-    {/each}
-  </div>
-</section>
+<template lang="html">
+  <section class="statistics">
+    <div class="wrapper">
+      {#each statisticsKeys as statisticsKey (statisticsKey)}
+        <dl class="entry">
+          <dt class="key">
+            {statisticsKeyMapping[statisticsKey]}
+          </dt>
+          <dd class="value">
+            {#if statisticsKey in playerStatistics }
+              { (itemsFormatToFixedPoint.includes(statisticsKey))
+                ? playerStatistics[statisticsKey].toFixed(2)
+                : playerStatistics[statisticsKey]
+              }
+            {:else}
+              -
+            {/if}
+          </dd>
+        </dl>
+      {/each}
+    </div>
+  </section>
+</template>

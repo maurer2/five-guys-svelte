@@ -3,9 +3,9 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-import sass from 'node-sass';
 import json from 'rollup-plugin-json';
 import copy from 'rollup-plugin-copy';
+import autoPreprocess, { scss } from 'svelte-preprocess';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -26,27 +26,12 @@ export default {
       css: (css) => {
         css.write('public/bundle.css');
       },
-      preprocess: {
-        style: ({ content, attributes }) => {
-          if (attributes.type !== 'text/scss') return;
+      preprocess: [
+        autoPreprocess({ /* svelte-preprocess options */ }),
+        scss({
 
-          return new Promise((fulfil, reject) => {
-            sass.render({
-              data: content,
-              includePaths: ['src'],
-              sourceMap: true,
-              outFile: 'x',
-            }, (err, result) => {
-              if (err) return reject(err);
-
-              fulfil({
-                code: result.css.toString(),
-                map: result.map.toString(),
-              });
-            });
-          });
-        },
-      },
+        }),
+      ],
     }),
     json({
       // All JSON files will be parsed by default,

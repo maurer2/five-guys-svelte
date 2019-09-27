@@ -5,7 +5,7 @@
   $: isDefault = (player === null);
 </script>
 
-<style type='text/scss'>
+<style lang='scss'>
   .hero {
     padding: 0 var(--spacing);
     background-image: url(/images/other/background-pattern.png);
@@ -88,31 +88,33 @@
 
 </style>
 
-<header class="header">
-  <div class="hero">
-    {#if isDefault}
-      <div class="default-image">
-        <img inline class="hero-image" src="/images/players/default.svg" alt="player photo" />
-      </div>
-    {:else}
-      <img class="hero-image" src="/images/players/p{player.id}.png" alt="player photo" />
-    {/if}
-  </div>
-  <div class="masthead">
-    <div class="text-column">
-      <h1 class="title" class:title--is-hidden={ isDefault }>
-        { isDefault ? '-' : player.fullName }
-      </h1>
-      <div class="position" class:position--is-hidden={ isDefault }>
-        { isDefault ? '-' : player.position }
-      </div>
-    </div>
-    <div class="crest-column">
+<template lang="html">
+  <header class="header">
+    <div class="hero">
       {#if isDefault}
-        <img class="crest crest-default" src="/images/teams/default.png" alt="" />
+        <div class="default-image">
+          <img inline class="hero-image" src="/images/players/default.svg" alt="player photo" />
+        </div>
       {:else}
-        <img class="crest" src="/images/teams/{player.team.id}.svg" alt="" />
+        <img class="hero-image" src="/images/players/p{player.id}.png" alt="player photo" />
       {/if}
     </div>
-  </div>
-</header>
+    <div class="masthead">
+      <div class="text-column">
+        <h1 class="title" class:title--is-hidden={ isDefault }>
+          { isDefault ? '-' : player.fullName }
+        </h1>
+        <div class="position" class:position--is-hidden={ isDefault }>
+          { isDefault ? '-' : player.position }
+        </div>
+      </div>
+      <div class="crest-column">
+        {#if isDefault}
+          <img class="crest crest-default" src="/images/teams/default.png" alt="" />
+        {:else}
+          <img class="crest" src="/images/teams/{player.team.id}.svg" alt="" />
+        {/if}
+      </div>
+    </div>
+  </header>
+</template>

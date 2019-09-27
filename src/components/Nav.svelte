@@ -10,7 +10,7 @@
 
 </script>
 
-<style type='text/scss'>
+<style lang='scss'>
   .nav {
     margin: var(--spacing) var(--spacing) calc(var(--spacing) * 1.25) var(--spacing);
   }
@@ -40,13 +40,19 @@
 
 </style>
 
-<section class="nav">
-  <select class="nav-box" bind:value={activePlayerId} on:change="{() => dispatchEvent('playerchange', activePlayerId)}">
-    <option value={0} disabled selected>Select player...</option>
-    {#each players as player (player.id)}
-      <option value={player.id}>
-        { player.fullName }
-      </option>
-    {/each}
-  </select>
-</section>
+<template lang="html">
+  <section class="nav">
+    <select
+      class="nav-box"
+      bind:value={activePlayerId}
+      on:change="{() => dispatchEvent('playerchange', activePlayerId)}"
+    >
+      <option value={0} disabled selected>Select player...</option>
+      {#each players as player (player.id)}
+        <option value={player.id}>
+          { player.fullName }
+        </option>
+      {/each}
+    </select>
+  </section>
+</template>
