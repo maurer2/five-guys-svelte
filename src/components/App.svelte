@@ -24,8 +24,8 @@
 
 </script>
 
-<style lang="scss">
-  @import '../styles/normalize.scss';
+<style global lang="scss">
+  @import "normalize.css";
   @import '../styles/variables';
   @import '../styles/global';
 
